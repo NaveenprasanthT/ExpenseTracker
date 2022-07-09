@@ -2,7 +2,6 @@ import React,{useContext} from 'react';
 import {List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemSecondaryAction, Slide,IconButton } from '@mui/material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './liststyle.css';
 import { ExpenceTracker } from '../../../context/context';
 
 
@@ -12,12 +11,12 @@ const Trans = () => {
     const {deleteTransactions,transactions} = useContext(ExpenceTracker);
 
     return(
-        <List dense={false} className='list'>
+        <List dense={false} sx={{maxHeight:"150px",overflow:"auto"}}>
             {transactions.map((transaction) => (
             <Slide direction='down' in mountOnEnter unmountOnExit key={transaction.id}>
                 <ListItem>
                     <ListItemAvatar>
-                        <Avatar className={transaction.type === 'Income'? 'avatarIncome' : 'avatarExpence' }>
+                        <Avatar sx={transaction.type === 'Income'? {color:"#fff",backgroundColor:"green"} : {color:"#fff",backgroundColor:"red"}}>
                             <CurrencyRupeeIcon />
                         </Avatar>
                     </ListItemAvatar>
