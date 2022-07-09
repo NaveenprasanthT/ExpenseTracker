@@ -1,9 +1,14 @@
 import React,{useContext} from 'react';
 import {Card,CardHeader,CardContent,Typography, Divider, Grid} from '@mui/material';
-import Form from './Form/Form.jsx';
-import Trans from './List/List.jsx';
+import Form from './Form/form.jsx';
+import Trans from './List/list.jsx';
 
 import {ExpenceTracker} from '../../context/context'
+
+import InfoCard from '../InfoCard.jsx';
+
+
+
 
 function Main(){
 
@@ -24,7 +29,9 @@ function Main(){
             <CardHeader title='Expence Tracker  ' subheader='Supports Speechly'/>
             <CardContent>
                 <Typography align='center' style={{fontSize:'25px',fontWeight:'700'}}>Your Balance : {balance}</Typography>
-                <Typography align='center' varient='subtitle3' style={{}}> Try saying "Add Income/Expense of 1000 rupees in Investments/Travel on Next Monday".</Typography>
+                <Typography align='center' varient='subtitle3' style={{}}> 
+                    <InfoCard />
+                </Typography>
             </CardContent>
             <Divider />
             <Form />
