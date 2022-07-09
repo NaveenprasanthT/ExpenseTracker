@@ -34,14 +34,6 @@ const Form =()=>{
             if(segment.intent.intent === 'add_income'){
                 setData({...data,type:"Income"})
             }
-            if(segment.intent.intent === 'add_transactions'){
-                if(data.category !== "" && data.amount !== "" && data.type !== ""){
-                        const transaction = {...data, amount: Number(data.amount),id:v4()}
-
-                        addTransactions(transaction);
-                        setData(initialState); 
-            }
-            }
             if(segment.intent.intent === 'add_delete'){
                 if(data.category !== "" || data.amount !== "0"){
                 setData(initialState); 
@@ -61,12 +53,17 @@ const Form =()=>{
                     case 'date':
                         setData({...data,date: e.value})
                         break;
+                    default:
+                        break;
                 }
 
             });
             }
         }
-    },[segment]) // eslint-disable-line react-hooks/exhaustive-deps
+        if(data.type && data.amount && data.category){
+            createTransactions();
+        }
+    },[segment])  // eslint-disable-line react-hooks/exhaustive-deps
  
 
     const selected = data.type === 'Income' ? incomeCategories : expenseCategories;
