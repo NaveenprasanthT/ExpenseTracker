@@ -38,7 +38,7 @@ function Main(){
             <CardContent>
                 <Grid container spacing={2}>
                     <Grid items xs={12}>
-                        <Trans />
+                       <Trans />
                     </Grid>
                 </Grid>
             </CardContent>
