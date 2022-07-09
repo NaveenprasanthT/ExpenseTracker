@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import {Card,CardHeader,CardContent,Typography, Divider, Grid} from '@mui/material';
 import Form from './Form/Form.jsx';
-import Trans from './List/list.jsx';
+import Trans from './List/List.jsx';
 
 import {ExpenceTracker} from '../../context/context'
 
