@@ -17,12 +17,17 @@ const Form =()=>{
     const[data,setData] = useState(initialState);
     const {addTransactions} = useContext(ExpenceTracker);
 
+    const [open,setOpen] = useState(false);
+
     const {segment} = useSpeechContext();
 
     const createTransactions = () =>{
         const transaction = {...data, amount: Number(data.amount),id:v4()}
 
         addTransactions(transaction);
+
+        setOpen(true);
+
         setData(initialState);
     }
 
@@ -55,12 +60,12 @@ const Form =()=>{
                         break;
                     default:
                         break;
-                }
-
+                } 
+                             
             });
             }
         }
-        if(data.type && data.amount && data.category){
+        if(data.type && data.amount && data.category && data.date){
             createTransactions();
         }
     },[segment])  // eslint-disable-line react-hooks/exhaustive-deps
@@ -70,6 +75,7 @@ const Form =()=>{
 
     return(
         <Grid container spacing={2}>
+        <Message open={open} setOpen={setOpen}/>
         <Grid item xs={12}>
             <Typography align='center'>
                 {segment && segment.words.map((w) => w.value).join(" ")}
@@ -105,7 +111,7 @@ const Form =()=>{
         ></TextField>
         </Grid>
         <Grid item xs={6}>
-            <TextField type='date'fullWidth
+            <TextField label='date' type='date'fullWidth
                 value={data.date}
                 onChange={(e) => setData({...data,date:e.target.value})}    
         ></TextField>
@@ -119,4 +125,3 @@ const Form =()=>{
 
 
 export default Form;
-
