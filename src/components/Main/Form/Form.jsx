@@ -24,10 +24,11 @@ const Form =()=>{
 
     const createTransactions = () =>{
         const transaction = {...data, amount: Number(data.amount),id:v4()}
-
+        
+        if(data.type && data.amount && data.category && data.date){
         addTransactions(transaction);
-
         setOpen(true);
+        }
 
         setData(initialState);
     }
