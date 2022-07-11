@@ -67,7 +67,7 @@ const Form =()=>{
             });
             }
         }
-        if(data.type && data.amount && data.category && data.date){
+        if(data.type && data.amount && data.category && data.date !== ''){
             createTransactions();
         }
     },[segment])  // eslint-disable-line react-hooks/exhaustive-deps
