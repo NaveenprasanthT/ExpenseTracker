@@ -5,16 +5,19 @@ import { ExpenceTracker } from '../../../context/context';
 import {v4} from 'uuid';
 import Message from '../../Snackbar';
 
+import formDate from './formdate';
+
 import {useSpeechContext} from '@speechly/react-client';
 
 const initialState ={
     type:'',
     category:'',
     amount:'',
-    date:'',
+    date: formDate(new Date()),
 }
 
 const Form =()=>{
+
     const[data,setData] = useState(initialState);
     const {addTransactions} = useContext(ExpenceTracker);
 
@@ -24,8 +27,9 @@ const Form =()=>{
 
     const createTransactions = () =>{
         const transaction = {...data, amount: Number(data.amount),id:v4()}
-        
-        if(data.type && data.amount && data.category && data.date){
+
+        if(data.type && data.amount && data.category && data.date)
+        {
         addTransactions(transaction);
         setOpen(true);
         }
@@ -67,7 +71,7 @@ const Form =()=>{
             });
             }
         }
-        if(data.type && data.amount && data.category && data.date !== ''){
+        if(data.type && data.amount && data.category && data.date !== formDate(new Date())){
             createTransactions();
         }
     },[segment])  // eslint-disable-line react-hooks/exhaustive-deps
@@ -113,13 +117,19 @@ const Form =()=>{
         ></TextField>
         </Grid>
         <Grid item xs={6}>
+            <Grid item xs={12}>
             <TextField label='date' type='date'fullWidth
                 value={data.date}
-                onChange={(e) => setData({...data,date:e.target.value})}    
-        ></TextField>
+                onChange={(e) => setData({...data,date: formDate(e.target.value)})}    
+            >   </TextField>
+            </Grid>
         </Grid>
         <Grid item xs={12}>
-            <Button variant='outlined' color='primary' onClick={createTransactions} fullWidth>Create</Button>
+            <Grid container xs={12} alignContent='center' justifyContent='center'>
+                <Grid item xs={4}>
+                    <Button variant='contained' color='primary' onClick={createTransactions} fullWidth>Create</Button>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
     );
@@ -127,3 +137,4 @@ const Form =()=>{
 
 
 export default Form;
+
