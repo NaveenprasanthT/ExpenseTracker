@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Details from './components/Details/Details';
 import { Grid } from '@mui/material';
 import Main from './components/Main/Main.jsx';
