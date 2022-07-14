@@ -25,7 +25,7 @@ const App = () =>{
                 <Grid item xs={12} sm={4}>
                     <Main />
                 </Grid>
-                <Grid item xs={12} sm={4} sx={width > 600 ? {display:'none'}:{}}>
+                <Grid item xs={12} sm={4} sx={width >= 600 ? {display:'none'}:{}}>
                     <Details title='Income'/>
                 </Grid>
                 <Grid item xs={12} sm={4}>
